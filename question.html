@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question and Answer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <!-- header -->
+    <header id="header">
+        <div id="tech-logo">
+          <a href="startquiz.html"><img src="assets/techpaathshala.svg" alt="techpaathsala"/></a>
+        </div>
+
+        <div class="right-side-info">
+          <ul>
+            <a href="startquiz.html"><li></li></a>
+             <li>Welcome,</li>
+             <li>A</li>
+             <img
+            id="popup"
+            onclick="popUp()"
+            src="assets/user_image.jpg"
+            alt="userimage"
+          />
+           </ul>
+        </div>
+      </header>
+
+      <section id="question-answer">
+        <h1 id="question-number"></h1>
+        <div id="progressbar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div class="question">
+            <h2 id="question-text"></h2>
+        </div>
+        <div class="answer">
+            <ol type="1" id="options-list">
+                <!-- <li id="option-1"></li>
+                <li id="option-2"></li>
+                <li id="option-3"></li>
+                <li id="option-4"></li> -->
+            </ol>
+        </div>
+        <button onclick="previousQuestion()" id="prev"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+        <button onclick="nextQuestion()" id="next">Next <i class="fa-solid fa-arrow-right"></i></button>
+    </section>
+
+    <div id="logout-container">
+      <p id="my-name">Hii, Amit</p>
+      <p id="my-email">amit2546@gmail.com</p>
+      <button id="logout-button" onclick="logout()">Logout</button>
+      <button id="logout-button">Edit</button>
+    </div>
+
+ <script src="index.js">
+ </script>
+ <script>startQuiz()</script>
+ <script>
+  window.onload = function() {
+    if(!localStorage.getItem("loggedInEmail")){
+      window.location.href = "login.html"
+    }
+    startQuiz(); 
+    checkUserData();
+  };
+</script>
+</body>
+</html>

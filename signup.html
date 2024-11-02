@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-up page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <section id="container">
+      <div class="logo">
+        <img src="assets/brain-image.png" alt="" />
+      </div>
+      <div class="signup-container">
+        <h1>Signup</h1>
+        <p>Sign up to Join</p>
+
+        <form onsubmit="return false">
+          <div class="email">
+            <label>Full Name <span>*</span></label>
+            <input id="fullname" type="text" placeholder="Full Name" />
+          </div>
+          <div class="email">
+            <label>Email ID <span>*</span></label>
+            <input id="email" type="email" placeholder="xyz14@gmail.com" />
+          </div>
+          <div class="password">
+            <label>Password <span>*</span></label>
+            <i id="eye-icon" class="icon fa-regular fa-eye-slash" onclick="toggle()"></i>
+            <input id="password" type="password" placeholder="Password" />
+          </div>
+          <button type="submit" class="button" onclick="handleSubmit()">
+            Sign Up
+          </button>
+        </form>
+
+        <div class="sign-up-with-google">
+          <img src="assets/google-logo.png" alt="" />
+          <p>Sign up with Google</p>
+        </div>
+        <div class="terms-condition">
+          <input id="checkbox" type="checkbox" />
+          <p>I accept <span>Terms & Conditions</span></p>
+        </div>
+        <div class="login-account">
+          <p>Don't have an account?</p>
+          <a href="login.html">Login</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="index.js">signUpForm()</script>
+  </body>
+</html>

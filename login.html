@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  </head>
+  <body>
+    <section id="container">
+      <div class="logo">
+        <img src="assets/brain-image.png" alt="brain" />
+      </div>
+
+      <div class="login-container">
+        <h1>Login</h1>
+        <p>Please enter your details below.</p>
+
+        <form onsubmit="handleLoginSubmit(event)">
+          <div class="email">
+            <label>Email ID <span>*</span></label>
+            <input id="emailInput" type="text" placeholder="xyz14@gmail.com" />
+          </div>
+          <div class="password">
+            <label>Password <span>*</span></label>
+            <i id="eye-icon" class="icon fa-regular fa-eye-slash" onclick="toggle()"></i>
+            <input id="password" class="passwordInput" type="password" placeholder="Password"/>
+          </div>
+          <button class="button" type="submit">Login</button>
+        </form>
+
+        <div class="sign-up-with-google">
+          <img src="assets/google-logo.png" alt="" />
+          <p>Sign up with Google</p>
+        </div>
+        <div class="create-account">
+          <p>Don't have an account?</p>
+          <a href="signup.html">Sign up?</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="index.js">handleLoginSubmit()</script>
+  </body>
+</html>

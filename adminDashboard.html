@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body style="height: 100%; width: 100%;">
+    <header id="admin-header">
+      <div id="tech-logo">
+        <i class="hamburger fa-solid fa-bars" onclick="sidebarToggle()"></i>
+        <img src="assets/techpaathshala.svg" alt="techpaathsala" />
+      </div>
+      <div class="right-side-info">
+        <ul>
+          <a href="startquiz.html"><li>Home</li></a>
+          <li>Welcome,</li>
+          <li>Amit</li>
+          <img
+            id="popup"
+            onclick="popUp()"
+            src="assets/user_image.jpg"
+            alt="userimage"
+          />
+        </ul>
+      </div>
+    </header>
+
+    <div class="admin-main-ciontainer">
+        <section class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+              <li><i class="fa-solid fa-house"></i>Home</li>
+              <li><i class="fa-solid fa-user"></i>Users</li>
+              <li><i class="fa-solid fa-question"></i>Quizzes</li>
+            </ul>
+            <div class="admin-logout-btn">
+                <i class="fa-solid fa-arrow-left-from-bracket"></i>
+              <button>Logout</button>
+            </div>
+          </section>
+    
+          <section class="main-content">
+              <h1>Welcome to the Admin Page</h1>
+          </section>
+    </div>
+     
+
+      <div id="logout-container">
+        <p id="my-name">Hii, Amit</p>
+        <p id="my-email">amit2546@gmail.com</p>
+        <button id="logout-button" onclick="logout()">Logout</button>
+        <button id="logout-button">Edit</button>
+      </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
