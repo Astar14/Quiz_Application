@@ -376,13 +376,16 @@ function nextQuestion() {
     // Calculate and display the total time taken
     const quizEndTime = new Date();
     const timeTaken = calculateTimeTaken(quizStartTime, quizEndTime);
-    alert(
-      `Quiz finished! Your score is ${finalScore} out of 100. Time taken: ${timeTaken}`
-    );
-    updateUserScore(finalScore);
-    resetQuizData();
-    nextButton.disabled = true;
-    window.location.href = "leaderBoard.html";
+    let text = "Are you sure you want to submit";
+    if (confirm(text) == true) {
+      alert(
+        `Quiz finished! Your score is ${finalScore} out of 100. Time taken: ${timeTaken}`
+      );
+      updateUserScore(finalScore);
+      resetQuizData();
+      nextButton.disabled = true;
+      window.location.href = "leaderBoard.html";
+    }
   }
 }
 
@@ -441,8 +444,11 @@ function popUp() {
 }
 
 function logout() {
-  localStorage.removeItem("loggedInEmail");
-  window.location.href = "login.html";
+  let message = "Are you sure you want to logout";
+  if (confirm(message) == true) {
+    localStorage.removeItem("loggedInEmail");
+    window.location.href = "login.html";
+  }
 }
 
 // LEADERBOARD START FROM HERE
