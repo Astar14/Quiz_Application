@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body style="height: 100%; width: 100%">
+    <header id="admin-header">
+      <div id="tech-logo">
+        <i class="hamburger fa-solid fa-bars" onclick="sidebarToggle()"></i>
+        <img src="assets/techpaathshala.svg" alt="techpaathsala" />
+      </div>
+      <div class="right-side-info">
+        <ul>
+          <li>Welcome,</li>
+          <li>Amit</li>
+          <img
+            id="popup"
+            onclick="popUp()"
+            src="assets/user_image.jpg"
+            alt="userimage"
+          />
+        </ul>
+      </div>
+    </header>
+
+    <div class="admin-main-ciontainer">
+      <section class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+          <li><i class="fa-solid fa-house"></i>Home</li>
+          <li><i class="fa-solid fa-user"></i>Users</li>
+          <li><i class="fa-solid fa-question"></i>Quizzes</li>
+        </ul>
+        <div class="admin-logout-btn">
+          <i class="fa-solid fa-arrow-left-from-bracket"></i>
+          <button>Logout</button>
+        </div>
+      </section>
+      
+      <section class="right-sidebar">
+        <div class="title">
+          <h1>All Quiz Questions</h1>
+        </div>
+        <button id="add-new-question-btn" onclick="popUp()">Add new Question</button>
+        <table class="table" id="question-table">
+          <tr>
+            <th>Sr.No</th>
+            <th>Questions</th>
+            <th>Actions</th>
+          </tr>
+          <tr>
+            <!-- <td>1</td>
+            <td>What is your name</td>
+            <td><i class="pen fa-solid fa-pencil"></i> <i class=" trashs fa-solid fa-trash-can"></i> <i class="open-eye fa-regular fa-eye"></i></td> -->
+          </tr>
+        </table>
+        <div class="question-details">
+            <h1>Question Details</h1>
+            <div class="cross-icon"><span>&#10006;</span></div>
+            
+            <p id="view-question">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum iure et aperiam eaque distinctio est.</p>
+            <p>Options:</p>
+            <ol type="1" id="optionsList">
+              <li>algorithm</li>
+              <li>maths</li>
+              <li>geography</li>
+              <li>biology</li>
+            </ol>
+            <p id="view-correct-answer"><strong>Correct Answer:</strong> 1</p>
+        </div>
+      </div>
+
+      <section id="add-new-question">
+        <h1>Add New Question</h1>
+        <form action="" onsubmit="handleQuestionAnswers(event)">
+        <div id="question">
+          <h3>Question:</h3>
+          <input id="question-input" type="text" placeholder="Enter your questions">
+        </div>
+        <div class="options">
+          <h3>Option a:</h3>
+          <input id="option-a" type="text" placeholder="Enter option 1">
+        </div>
+        <div class="options">
+          <h3>Option b:</h3>
+          <input id="option-b" type="text" placeholder="Enter option 2">
+        </div>
+        <div class="options">
+          <h3>Option c:</h3>
+          <input id="option-c" type="text" placeholder="Enter option 3">
+        </div>
+        <div class="options">
+          <h3>Option d:</h3>
+          <input id="option-d" type="text" placeholder="Enter option 4">
+        </div>
+        <div class="options" id="correct-answer">
+          <h3>Correct Answer:</h3>
+          <input id="correct-answer-input" type="text" placeholder="Enter the correct answer">
+        </div>
+        <button type="submit" id="add-question-btn">Add Question</button>
+      </form>
+      </section>
+      </section>
+   
+    
+      
+    
+
+    <div id="logout-container">
+      <p id="my-name">Hii, Amit</p>
+      <p id="my-email">amit2546@gmail.com</p>
+      <button id="logout-button" onclick="logout()">Logout</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

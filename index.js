@@ -1,105 +1,3 @@
-function handleSubmit() {
-  let fullName = document.getElementById("fullname").value;
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
-  let checkBox = document.getElementById("checkbox").checked;
-
-  let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  let passwordPattern =
-    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-  const namePattern = /^[a-zA-Z\s]+$/;
-
-  const emailExists = userInformation.some((user) => user.email === email);
-  const passwordExists = userInformation.some(
-    (user) => user.password === password
-  );
-  if (!fullName || fullName.length < 4) {
-    alert("Fullname is mandatory and minimum four letter please enter");
-    return;
-  }
-  if (!namePattern.test(fullName)) {
-    alert("Full name should only contain letters and spaces.");
-    return;
-  }
-  if (!email) {
-    alert("Email is mandatory please enter");
-    return;
-  }
-  if (!emailPattern.test(email)) {
-    alert("Enter a proper email");
-    return;
-  }
-  if (!password || password.length < 8) {
-    alert("Password is mandatory upto 8 length please enter");
-    return;
-  } else if (!passwordPattern.test(password)) {
-    alert(
-      "Password should contain one capital letter one number and special character"
-    );
-    return;
-  }
-  if (emailExists) {
-    alert("This email is already registered. Please use a different email.");
-    return;
-  } else if (passwordExists) {
-    alert("This password is already exist. Please use a different password.");
-    return;
-  }
-  if (!checkBox) {
-    alert("Accept the terms and conditions");
-    return;
-  } else {
-    alert("successfully registered...");
-  }
-  const userData = { fullName, email, password, score: 0 };
-  userInformation.push(userData);
-  localStorage.setItem("userData", JSON.stringify(userInformation));
-  window.location.href = "login.html";
-}
-
-const userInformation = JSON.parse(localStorage.getItem("userData")) || [];
-
-function handleLoginSubmit(event) {
-  event.preventDefault();
-  const loginEmail = document.getElementById("emailInput").value;
-  const loginPassword = document.querySelector(".passwordInput").value;
-  // Validate form inputs
-  if (!loginEmail || !loginPassword) {
-    alert("Please fill in both fields.");
-    return;
-  }
-  loginUser(loginEmail, loginPassword);
-}
-
-function loginUser(loginEmail, loginPassword) {
-  const users = JSON.parse(localStorage.getItem("userData")) || [];
-
-  const userFound = users.find(
-    (user) => user.email === loginEmail && user.password === loginPassword
-  );
-
-  if (userFound) {
-    localStorage.setItem("loggedInEmail", loginEmail);
-    window.location.href = "startquiz.html";
-  } else {
-    alert("Invalid email or password");
-  }
-}
-let eyeButton = document.getElementById("eye-icon");
-// let passWord = document.getElementById("password");
-
-function toggle() {
-  if (password.type == "password") {
-    password.type = "text";
-    eyeButton.classList.remove("fa-eye-slash");
-    eyeButton.classList.add("fa-eye");
-  } else {
-    password.type = "password";
-    eyeButton.classList.remove("fa-eye");
-    eyeButton.classList.add("fa-eye-slash");
-  }
-}
-
 let quizData = [
   {
     question: "What does HTML stands for?",
@@ -267,6 +165,113 @@ let quizData = [
     choosedAnswer: null,
   },
 ];
+const userBasicInformation = JSON.parse(localStorage.getItem("userBasicData")) || [];
+const userInformation = JSON.parse(localStorage.getItem("userData")) || [];
+console.log(userInformation)
+
+function handleSignUpForm() {
+  let fullName = document.getElementById("fullname").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let checkBox = document.getElementById("checkbox").checked;
+
+  let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  let passwordPattern =
+    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+  const namePattern = /^[a-zA-Z\s]+$/;
+  const emailExists = userInformation.some((user) => user.email === email);
+  const passwordExists = userInformation.some(
+    (user) => user.password === password
+  );
+  if (!fullName || fullName.length < 4) {
+    alert("Fullname is mandatory and minimum four letter please enter");
+    return;
+  }
+  if (!namePattern.test(fullName)) {
+    alert("Full name should only contain letters and spaces.");
+    return;
+  }
+  if (!email) {
+    alert("Email is mandatory please enter");
+    return;
+  }
+  if (!emailPattern.test(email)) {
+    alert("Enter a proper email");
+    return;
+  }
+  if (!password || password.length < 8) {
+    alert("Password is mandatory upto 8 length please enter");
+    return;
+  } else if (!passwordPattern.test(password)) {
+    alert(
+      "Password should contain one capital letter one number and special character"
+    );
+    return;
+  }
+  if (emailExists) {
+    alert("This email is already registered. Please use a different email.");
+    return;
+  } else if (passwordExists) {
+    alert("This password is already exist. Please use a different password.");
+    return;
+  }
+  if (!checkBox) {
+    alert("Accept the terms and conditions");
+    return;
+  } else {
+    alert("successfully registered...");
+  }
+  let userData = { fullName, email, score: [], playCount: 0, testInformation:[] };
+  userInformation.push(userData);
+  localStorage.setItem("userData", JSON.stringify(userInformation));
+
+  const userBasicData = { fullName, email, password };
+  userBasicInformation.push(userBasicData);
+  localStorage.setItem("userBasicData", JSON.stringify(userBasicInformation));
+  window.location.href = "index.html";
+}
+
+function handleLoginSubmit(event) {
+  event.preventDefault();
+  const loginEmail = document.getElementById("emailInput").value;
+  const loginPassword = document.querySelector(".passwordInput").value;
+  // Validate form inputs
+  if (!loginEmail || !loginPassword) {
+    alert("Please fill in both fields.");
+    return;
+  }
+  loginUser(loginEmail, loginPassword);
+}
+
+function loginUser(loginEmail, loginPassword) {
+  const users = JSON.parse(localStorage.getItem("userBasicData")) || [];
+
+  const userFound = users.find(
+    (user) => user.email === loginEmail && user.password === loginPassword
+  );
+
+  if (userFound) {
+    localStorage.setItem("loggedInEmail", loginEmail);
+     window.location.href = "startquiz.html";
+  } else {
+    alert("Invalid email or password");
+  }
+}
+
+// let passWord = document.getElementById("password");
+
+function eyeButtonToggle() {
+  let eyeButton = document.getElementById("eye-icon");
+  if (password.type == "password") {
+    password.type = "text";
+    eyeButton.classList.remove("fa-eye-slash");
+    eyeButton.classList.add("fa-eye");
+  } else {
+    password.type = "password";
+    eyeButton.classList.remove("fa-eye");
+    eyeButton.classList.add("fa-eye-slash");
+  }
+}
 
 function navigate() {
   window.location.href = "question.html";
@@ -291,7 +296,13 @@ function shuffleQuestions() {
   return shuffledData.slice(0, 10);
 }
 let quizStartTime;
+let storeData = JSON.parse(localStorage.getItem("allQuizData")) || [];
+
 function startQuiz() {
+    if (!localStorage.getItem("quizStarted")) {
+      updatePlayCount();
+      localStorage.setItem("quizStarted", true); // Set flag
+    }
   currentQuestionIndex = 0;
   score = 0;
   questionSequence = shuffleQuestions(); // Shuffle once and store the sequence
@@ -301,8 +312,6 @@ function startQuiz() {
   quizStartTime = new Date();
   showQuestion();
 }
-
-let storeData = JSON.parse(localStorage.getItem("allQuizData")) || [];
 
 function showQuestion() {
   if (currentQuestionIndex === 0) {
@@ -355,6 +364,7 @@ function selectAnswer(li, index) {
 function resetQuizData() {
   localStorage.removeItem("allQuizData");
   localStorage.removeItem("currentQuestionIndex");
+  localStorage.removeItem("quizStarted"); 
 }
 
 function nextQuestion() {
@@ -382,6 +392,7 @@ function nextQuestion() {
         `Quiz finished! Your score is ${finalScore} out of 100. Time taken: ${timeTaken}`
       );
       updateUserScore(finalScore);
+      saveTestInformation(storeData, finalScore); // Save test info here
       resetQuizData();
       nextButton.disabled = true;
       window.location.href = "leaderBoard.html";
@@ -406,14 +417,50 @@ function calculateScore() {
   return finalScore;
 }
 
+//finalscore bracket me
 function updateUserScore(finalScore) {
   const users = JSON.parse(localStorage.getItem("userData")) || [];
   const loginEmail = localStorage.getItem("loggedInEmail");
-  // Find the user and update the score
+  //Find the user and update the score
   const userIndex = users.findIndex((user) => user.email === loginEmail);
   if (userIndex !== -1) {
-    users[userIndex].score = finalScore; // Update the score
+    if (!Array.isArray(users[userIndex].score)) {
+      users[userIndex].score = []; // Ensure score is an array
+    }
+  //  users[userIndex].score = finalScore; // Update the score
+    //  Add the new score without overwriting previous ones
+     users[userIndex].score.push(finalScore);
     localStorage.setItem("userData", JSON.stringify(users)); // Save updated data
+  }
+}
+
+// Step 2: Generate a flat leaderboard with user scores as individual entries
+function getFlattenedLeaderboard() {
+  const users = JSON.parse(localStorage.getItem("userData")) || [];
+  let leaderboard = [];
+
+  users.forEach(user => {
+    if (Array.isArray(user.score)) { // Ensure score is an array
+      user.score.forEach(score => {
+        leaderboard.push({ fullName: user.fullName, score: score ,email: user.email});
+      });
+    }
+  });
+
+  // Sort leaderboard by score in descending order
+  leaderboard.sort((a, b) => b.score - a.score);
+  return leaderboard;
+}
+
+
+
+function updatePlayCount() {
+  const users = JSON.parse(localStorage.getItem("userData")) || [];
+  const loggedInEmail = localStorage.getItem("loggedInEmail");
+  const userIndex = users.findIndex((user) => user.email === loggedInEmail);
+  if (userIndex !== -1) {
+    users[userIndex].playCount = (users[userIndex].playCount || 0) + 1;
+    localStorage.setItem("userData", JSON.stringify(users));
   }
 }
 
@@ -447,24 +494,40 @@ function logout() {
   let message = "Are you sure you want to logout";
   if (confirm(message) == true) {
     localStorage.removeItem("loggedInEmail");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   }
 }
 
+
+
+//let userInformation = JSON.parse(localStorage.getItem('userInformation'));
 // LEADERBOARD START FROM HERE
 var users = JSON.parse(localStorage.getItem("userData")) || [];
+//users.sort((a, b) => b.score - a.score);
+//users.sort(sortUsersByScore);
 users.sort((a, b) => b.score - a.score);
-const loggedInEmail = localStorage.getItem("loggedInEmail");
-const loggedInUser = users.find((user) => user.email === loggedInEmail);
+let loggedInEmail = localStorage.getItem("loggedInEmail");
+let loggedInUser = users.find((user) => user.email === loggedInEmail);
 if (loggedInUser) {
   document.querySelector(".right-side-info li:nth-child(3)").innerText =
     loggedInUser.fullName;
-  document.getElementById("my-name").innerText = `Hii, ${loggedInUser.fullName}`;
+  document.getElementById(
+    "my-name"
+  ).innerText = `Hii, ${loggedInUser.fullName}`;
   document.getElementById("my-email").innerText = loggedInEmail;
 }
 
+
 function updateLeaderboard() {
-  let userRank = users.indexOf(loggedInUser) + 1;
+
+  const leaderboard = getFlattenedLeaderboard(); // Get sorted leaderboard
+  console.log(leaderboard)
+  const loggedInEmail = localStorage.getItem("loggedInEmail");
+  console.log(loggedInEmail)
+  const loggedInUser = leaderboard.find((entry) => entry.email === loggedInEmail);
+
+  let userRank = leaderboard.findIndex(entry => entry.email === loggedInEmail) + 1;
+  //let userRank = users.indexOf(loggedInUser) + 1;
   document.getElementById(
     "user-rank-title"
   ).innerText = `Wow You Rank ${userRank}`;
@@ -473,32 +536,33 @@ function updateLeaderboard() {
   ).innerText = `Your Score: ${loggedInUser.score}`;
 
   // First rank update
-  if (users[0]) {
+  if (leaderboard[0]) {
     document.querySelector("#first-rank-container .actual-score p").innerText =
-      users[0].score;
+      leaderboard[0].score;
     document.querySelector("#first-rank-container .username").innerText =
-      users[0].fullName;
+      leaderboard[0].fullName;
   }
   // Second rank update
-  if (users[1]) {
+  if (leaderboard[1]) {
     document.querySelector(
       "#second-rank-container .actual-score2 p"
-    ).innerText = users[1].score;
+    ).innerText = leaderboard[1].score;
     document.querySelector("#second-rank-container .username").innerText =
-      users[1].fullName;
+      leaderboard[1].fullName;
   }
   // Third rank update
-  if (users[2]) {
+  if (leaderboard[2]) {
     document.querySelector("#third-rank-container .actual-score3 p").innerText =
-      users[2].score;
+      leaderboard[2].score;
     document.querySelector("#third-rank-container .username").innerText =
-      users[2].fullName;
+      leaderboard[2].fullName;
   }
 
   // Update rankings 4-6
   const rankingBoard = document.querySelectorAll(".ranking-board .ranking");
   rankingBoard.forEach((rank, index) => {
-    const user = users[index + 3];
+    //const user = users[index + 3];
+    const user = leaderboard[index + 3];  // Adjust index to start from the 4th user
     if (user) {
       rank.querySelector(".user-name span").innerText = `#${index + 4}`;
       rank.querySelector(".user-name").innerHTML = `<span>#${
@@ -517,6 +581,23 @@ function updateLeaderboard() {
       loggedInUser.score;
   }
 }
+
+
+// Function to sort users by their best score
+// function sortUsersByScore(a, b) {
+//   return b.scores.sort((a, b) => b - a)[0] - a.scores.sort((a, b) => b - a)[0];
+// }
+
+// function sortUsersByScore(a, b) {
+//   return Math.max(...b.scores) - Math.max(...a.scores);
+// }
+
+
+
+
+
+
+
 // Function to check if user data exists
 function checkUserData() {
   const users = JSON.parse(localStorage.getItem("userData")) || [];
@@ -527,23 +608,55 @@ function checkUserData() {
   }
 }
 
-// Admin panel
+// function saveTestInformation(questions, score) {
+//   let userInformation = JSON.parse(localStorage.getItem('userInformation')) || { testInformation: [] };
+//   const testSession = {
+//       date: new Date().toLocaleString(),
+//       score: score,
+//       questions: questions.map(question => ({
+//           questionText: question.questionText,
+//           options: question.options,
+//           choosedAnswer: question.choosedAnswer,
+//           correctAnswer: question.correctAnswer,
+//       })),
+//   };
 
-let hamburger = document.querySelector(".hamburger");
-let sidebar = document.querySelector(".sidebar");
-let mainContent = document.querySelector(".main-content");
-let bool = 0;
+//   userInformation.testInformation.push(testSession);
+//   localStorage.setItem('userInformation', JSON.stringify(userInformation));
+// }
 
-function sidebarToggle() {
-  if (bool == 0) {
-    sidebar.style.left = "-300px";
-    sidebar.style.width = "0px";
-    mainContent.style.width = "100%";
-    bool = 1;
-  } else {
-    sidebar.style.left = "0px";
-    sidebar.style.width = "18%";
-    mainContent.style.width = "100%";
-    bool = 0;
+function saveTestInformation(questions, score) {
+  let userInformation = JSON.parse(localStorage.getItem("userData")) || [];
+  const loggedInEmail = localStorage.getItem("loggedInEmail");
+  const userIndex = userInformation.findIndex(user => user.email === loggedInEmail);
+
+  if (userIndex !== -1) {
+    const testResult = {
+      testDate: new Date().toLocaleDateString(), // Add a timestamp for when the test was taken
+      score: score,
+      testDetails: questions.map(question => ({
+        question: question.question,
+        allOptions: question.answers, // Save all answer options
+        choosedAnswer: question.choosedAnswer,
+        correctAnswer: question.correct,
+        selectedAnswer: question.choosedAnswer !== null ? question.answers[question.choosedAnswer] : null, // The selected answer text
+        wrongAnswer: question.choosedAnswer !== question.correct ? question.answers[question.correct] : null, // The correct answer text if wrong
+        rightAnswer: question.choosedAnswer === question.correct ? question.answers[question.correct] : null, // The correct answer text if right
+      
+      }))
+    };
+
+    // Check if testInformation exists and push new test results, otherwise create a new array
+    if (!userInformation[userIndex].testInformation) {
+      userInformation[userIndex].testInformation = [];
+    }
+    
+    userInformation[userIndex].testInformation.push(testResult); // Append the new test result
+    localStorage.setItem("userData", JSON.stringify(userInformation)); // Save the updated user data
   }
 }
+
+
+
+
+

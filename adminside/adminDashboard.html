@@ -4,23 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="admin-style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
   </head>
-  <body style="height: 100%; width: 100%;">
+  <body>
     <header id="admin-header">
+
       <div id="tech-logo">
         <i class="hamburger fa-solid fa-bars" onclick="sidebarToggle()"></i>
         <img src="assets/techpaathshala.svg" alt="techpaathsala" />
       </div>
+
       <div class="right-side-info">
         <ul>
-          <a href="startquiz.html"><li>Home</li></a>
           <li>Welcome,</li>
-          <li>Amit</li>
+          <li>Admin</li>
           <img
             id="popup"
             onclick="popUp()"
@@ -44,21 +45,18 @@
               <button>Logout</button>
             </div>
           </section>
-           <div class="title">
-            <h1>All Quiz Questions</h1>
-           </div>
-           
-           <button id="add-new-question-btn">Add new Question</button>
+    
+          <section class="main-content">
+              <h1>Welcome to the Admin Page</h1>
+          </section>
     </div>
      
-
-      <div id="logout-container">
-        <p id="my-name">Hii, Amit</p>
-        <p id="my-email">amit2546@gmail.com</p>
+     <div id="logout-container">
+        <p id="my-name">Hii, Admin</p>
+        <p id="my-email">admin007@gmail.com</p>
         <button id="logout-button" onclick="logout()">Logout</button>
-        <button id="logout-button">Edit</button>
       </div>
 
-    <script src="index.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
