@@ -167,7 +167,6 @@ let quizData = [
 ];
 const userBasicInformation = JSON.parse(localStorage.getItem("userBasicData")) || [];
 const userInformation = JSON.parse(localStorage.getItem("userData")) || [];
-console.log(userInformation)
 
 function handleSignUpForm() {
   let fullName = document.getElementById("fullname").value;
@@ -421,7 +420,6 @@ function calculateScore() {
 function updateUserScore(finalScore) {
   const users = JSON.parse(localStorage.getItem("userData")) || [];
   const loginEmail = localStorage.getItem("loggedInEmail");
-  //Find the user and update the score
   const userIndex = users.findIndex((user) => user.email === loginEmail);
   if (userIndex !== -1) {
     if (!Array.isArray(users[userIndex].score)) {
@@ -497,8 +495,6 @@ function logout() {
     window.location.href = "index.html";
   }
 }
-
-
 
 //let userInformation = JSON.parse(localStorage.getItem('userInformation'));
 // LEADERBOARD START FROM HERE
@@ -582,22 +578,6 @@ function updateLeaderboard() {
   }
 }
 
-
-// Function to sort users by their best score
-// function sortUsersByScore(a, b) {
-//   return b.scores.sort((a, b) => b - a)[0] - a.scores.sort((a, b) => b - a)[0];
-// }
-
-// function sortUsersByScore(a, b) {
-//   return Math.max(...b.scores) - Math.max(...a.scores);
-// }
-
-
-
-
-
-
-
 // Function to check if user data exists
 function checkUserData() {
   const users = JSON.parse(localStorage.getItem("userData")) || [];
@@ -607,23 +587,6 @@ function checkUserData() {
     console.log("No user data found.");
   }
 }
-
-// function saveTestInformation(questions, score) {
-//   let userInformation = JSON.parse(localStorage.getItem('userInformation')) || { testInformation: [] };
-//   const testSession = {
-//       date: new Date().toLocaleString(),
-//       score: score,
-//       questions: questions.map(question => ({
-//           questionText: question.questionText,
-//           options: question.options,
-//           choosedAnswer: question.choosedAnswer,
-//           correctAnswer: question.correctAnswer,
-//       })),
-//   };
-
-//   userInformation.testInformation.push(testSession);
-//   localStorage.setItem('userInformation', JSON.stringify(userInformation));
-// }
 
 function saveTestInformation(questions, score) {
   let userInformation = JSON.parse(localStorage.getItem("userData")) || [];
