@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
+    <title>Quizzes Page</title>
     <link rel="stylesheet" href="admin-style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
@@ -36,7 +36,7 @@
       <section class="sidebar">
         <h2>Dashboard</h2>
         <ul>
-          <li><i class="fa-solid fa-house"></i>Home</li>
+          <a href="adminDashboard.html"> <li><i class="fa-solid fa-house"></i>Home</li></a>
           <li><i class="fa-solid fa-user"></i>Users</li>
           <li><i class="fa-solid fa-question"></i>Quizzes</li>
         </ul>
@@ -46,7 +46,7 @@
         </div>
       </section>
       
-      <section class="right-sidebar">
+      <section class="right-sidebar main-content">
         <div class="title">
           <h1>All Quiz Questions</h1>
         </div>
@@ -63,9 +63,11 @@
             <td><i class="pen fa-solid fa-pencil"></i> <i class=" trashs fa-solid fa-trash-can"></i> <i class="open-eye fa-regular fa-eye"></i></td> -->
           </tr>
         </table>
+
+        <div class="overlay" id="overlay" style="display: none;" onclick="closePopUp()"></div>
         <div class="question-details">
             <h1>Question Details</h1>
-            <div class="cross-icon"><span>&#10006;</span></div>
+            <div class="cross-icon" onclick="closePopUp()"><span>&#10006;</span></div>
             
             <p id="view-question">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum iure et aperiam eaque distinctio est.</p>
             <p>Options:</p>
@@ -81,7 +83,7 @@
 
       <section id="add-new-question">
         <h1>Add New Question</h1>
-        <form action="" onsubmit="handleQuestionAnswers(event)">
+        <form action=""  onsubmit="handleQuestionAnswers(event)">
         <div id="question">
           <h3>Question:</h3>
           <input id="question-input" type="text" placeholder="Enter your questions">
@@ -118,7 +120,7 @@
     <div id="logout-container">
       <p id="my-name">Hii, Amit</p>
       <p id="my-email">amit2546@gmail.com</p>
-      <button id="logout-button" onclick="logout()">Logout</button>
+      <button id="logout-button" onclick="popUpLogout()">Logout</button>
     </div>
 
     <script src="script.js"></script>

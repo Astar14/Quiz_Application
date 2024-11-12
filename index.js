@@ -167,6 +167,8 @@ let quizData = [
 ];
 const userBasicInformation = JSON.parse(localStorage.getItem("userBasicData")) || [];
 const userInformation = JSON.parse(localStorage.getItem("userData")) || [];
+let storeData = JSON.parse(localStorage.getItem("allQuizData")) || [];
+localStorage.setItem("quizDatas",JSON.stringify(quizData))
 
 function handleSignUpForm() {
   let fullName = document.getElementById("fullname").value;
@@ -228,6 +230,7 @@ function handleSignUpForm() {
   userBasicInformation.push(userBasicData);
   localStorage.setItem("userBasicData", JSON.stringify(userBasicInformation));
   window.location.href = "index.html";
+
 }
 
 function handleLoginSubmit(event) {
@@ -295,7 +298,7 @@ function shuffleQuestions() {
   return shuffledData.slice(0, 10);
 }
 let quizStartTime;
-let storeData = JSON.parse(localStorage.getItem("allQuizData")) || [];
+ storeData = JSON.parse(localStorage.getItem("allQuizData")) || [];
 
 function startQuiz() {
     if (!localStorage.getItem("quizStarted")) {
@@ -307,12 +310,14 @@ function startQuiz() {
   questionSequence = shuffleQuestions(); // Shuffle once and store the sequence
   localStorage.setItem("allQuizData", JSON.stringify(questionSequence)); // Store shuffled data
   storeData = questionSequence;
+  storeData = JSON.parse(localStorage.getItem("allQuizData"));
   // Store the quiz start time
   quizStartTime = new Date();
   showQuestion();
 }
 
 function showQuestion() {
+ 
   if (currentQuestionIndex === 0) {
     previousButton.style.display = "none";
   } else {
@@ -449,7 +454,6 @@ function getFlattenedLeaderboard() {
   leaderboard.sort((a, b) => b.score - a.score);
   return leaderboard;
 }
-
 
 
 function updatePlayCount() {
