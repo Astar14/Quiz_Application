@@ -24,7 +24,7 @@
           <li>Amit</li>
           <img
             id="popup"
-            onclick="popUp()"
+            onclick="popUpLogout()"
             src="assets/user_image.jpg"
             alt="userimage"
           />
@@ -37,7 +37,7 @@
         <h2>Dashboard</h2>
         <ul>
           <a href="adminDashboard.html"> <li><i class="fa-solid fa-house"></i>Home</li></a>
-          <li><i class="fa-solid fa-user"></i>Users</li>
+          <a href="users.html"> <li><i class="fa-solid fa-user"></i>Users</li></a>
           <li><i class="fa-solid fa-question"></i>Quizzes</li>
         </ul>
         <div class="admin-logout-btn">
@@ -67,7 +67,7 @@
         <div class="overlay" id="overlay" style="display: none;" onclick="closePopUp()"></div>
         <div class="question-details">
             <h1>Question Details</h1>
-            <div class="cross-icon" onclick="closePopUp()"><span>&#10006;</span></div>
+            <div class="cross-icon" id="cross-icon" onclick="closePopUp()"><span>&#10006;</span></div>
             
             <p id="view-question">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum iure et aperiam eaque distinctio est.</p>
             <p>Options:</p>
@@ -80,13 +80,16 @@
             <p id="view-correct-answer"><strong>Correct Answer:</strong> 1</p>
         </div>
       </div>
-
       <section id="add-new-question">
         <h1>Add New Question</h1>
+        
         <form action=""  onsubmit="handleQuestionAnswers(event)">
+          <div class="cross-icon" onclick="closePopUp2()"><span>&#10006;</span></div>
+          <div class="overlay" id="overlay" style="display: none;" onclick="closePopUp2()"></div>
         <div id="question">
           <h3>Question:</h3>
-          <input id="question-input" type="text" placeholder="Enter your questions">
+          <textarea name="" id="question-input"></textarea>
+          <!-- <input id="question-input" type="text" placeholder="Enter your questions"> -->
         </div>
         <div class="options">
           <h3>Option a:</h3>
@@ -120,9 +123,12 @@
     <div id="logout-container">
       <p id="my-name">Hii, Amit</p>
       <p id="my-email">amit2546@gmail.com</p>
-      <button id="logout-button" onclick="popUpLogout()">Logout</button>
+      <button id="logout-button" onclick="logout()">Logout</button>
     </div>
 
     <script src="script.js"></script>
+    <script>
+            displayQuizData()
+    </script>
   </body>
 </html>

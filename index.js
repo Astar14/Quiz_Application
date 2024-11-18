@@ -165,6 +165,7 @@ let quizData = [
     choosedAnswer: null,
   },
 ];
+
 const userBasicInformation = JSON.parse(localStorage.getItem("userBasicData")) || [];
 const userInformation = JSON.parse(localStorage.getItem("userData")) || [];
 let storeData = JSON.parse(localStorage.getItem("allQuizData")) || [];
@@ -222,7 +223,7 @@ function handleSignUpForm() {
   } else {
     alert("successfully registered...");
   }
-  let userData = { fullName, email, score: [], playCount: 0, testInformation:[] };
+  let userData = { fullName, email,timeTaken:null, score: [], playCount: 0, testInformation:[] };
   userInformation.push(userData);
   localStorage.setItem("userData", JSON.stringify(userInformation));
 
@@ -395,8 +396,8 @@ function nextQuestion() {
       alert(
         `Quiz finished! Your score is ${finalScore} out of 100. Time taken: ${timeTaken}`
       );
-      updateUserScore(finalScore);
-      saveTestInformation(storeData, finalScore); // Save test info here
+      updateUserScore(finalScore, timeTaken);
+      saveTestInformation(storeData, finalScore,timeTaken); // Save test info here
       resetQuizData();
       nextButton.disabled = true;
       window.location.href = "leaderBoard.html";
@@ -408,7 +409,7 @@ function calculateTimeTaken(startTime, endTime) {
   const timeDiff = Math.floor((endTime - startTime) / 1000); // Time difference in seconds
   const minutes = Math.floor(timeDiff / 60);
   const seconds = timeDiff % 60;
-  return `${minutes} minutes and ${seconds} seconds`;
+  return `${minutes} : ${seconds} `;
 }
 
 function calculateScore() {
@@ -430,26 +431,21 @@ function updateUserScore(finalScore) {
     if (!Array.isArray(users[userIndex].score)) {
       users[userIndex].score = []; // Ensure score is an array
     }
-  //  users[userIndex].score = finalScore; // Update the score
-    //  Add the new score without overwriting previous ones
      users[userIndex].score.push(finalScore);
     localStorage.setItem("userData", JSON.stringify(users)); // Save updated data
   }
 }
 
-// Step 2: Generate a flat leaderboard with user scores as individual entries
 function getFlattenedLeaderboard() {
   const users = JSON.parse(localStorage.getItem("userData")) || [];
   let leaderboard = [];
-
   users.forEach(user => {
-    if (Array.isArray(user.score)) { // Ensure score is an array
+    if (Array.isArray(user.score)) { 
       user.score.forEach(score => {
-        leaderboard.push({ fullName: user.fullName, score: score ,email: user.email});
+        leaderboard.push({ fullName: user.fullName, score: score ,email: user.email,timeTaken: score.timeTaken});
       });
     }
   });
-
   // Sort leaderboard by score in descending order
   leaderboard.sort((a, b) => b.score - a.score);
   return leaderboard;
@@ -500,11 +496,9 @@ function logout() {
   }
 }
 
-//let userInformation = JSON.parse(localStorage.getItem('userInformation'));
 // LEADERBOARD START FROM HERE
 var users = JSON.parse(localStorage.getItem("userData")) || [];
-//users.sort((a, b) => b.score - a.score);
-//users.sort(sortUsersByScore);
+
 users.sort((a, b) => b.score - a.score);
 let loggedInEmail = localStorage.getItem("loggedInEmail");
 let loggedInUser = users.find((user) => user.email === loggedInEmail);
@@ -592,7 +586,7 @@ function checkUserData() {
   }
 }
 
-function saveTestInformation(questions, score) {
+function saveTestInformation(questions, score,timeTaken) {
   let userInformation = JSON.parse(localStorage.getItem("userData")) || [];
   const loggedInEmail = localStorage.getItem("loggedInEmail");
   const userIndex = userInformation.findIndex(user => user.email === loggedInEmail);
@@ -601,6 +595,7 @@ function saveTestInformation(questions, score) {
     const testResult = {
       testDate: new Date().toLocaleDateString(), // Add a timestamp for when the test was taken
       score: score,
+      timeTaken:timeTaken,
       testDetails: questions.map(question => ({
         question: question.question,
         allOptions: question.answers, // Save all answer options

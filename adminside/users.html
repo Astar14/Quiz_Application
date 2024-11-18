@@ -24,7 +24,7 @@
           <li>Admin</li>
           <img
             id="popup"
-            onclick="popUp()"
+            onclick="popUpLogout()"
             src="assets/user_image.jpg"
             alt="userimage"
           />
@@ -36,8 +36,8 @@
         <section class="sidebar">
             <h2>Dashboard</h2>
             <ul>
-               <li><i class="fa-solid fa-house"></i>Home</li>
-              <li><i class="fa-solid fa-user"></i>Users</li>
+              <a href="adminDashboard.html">  <li><i class="fa-solid fa-house"></i>Home</li></a>
+             <a href="users.html">  <li><i class="fa-solid fa-user"></i>Users</li></a>
               <a href="quizzes.html"><li><i class="fa-solid fa-question"></i>Quizzes</li></a>
             </ul>
             <div class="admin-logout-btn">
@@ -67,7 +67,7 @@
                         <td>amit@gmail.com</td>
                         <td>100</td>
                         <td>10</td>
-                        <td><a href="https://www.google.com">View more</a></td>
+                        <td><a href="testDetails.html">View more</a></td>
                     </tr>
                     </tbody>
                  
@@ -81,7 +81,8 @@
         <p id="my-email">admin007@gmail.com</p>
         <button id="logout-button" onclick="logout()">Logout</button>
       </div>
-
-    <script src="script.js"></script>
+      <script src="script.js"></script>
   </body>
+  
+ 
 </html>
